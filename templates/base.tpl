@@ -1,5 +1,4 @@
 {set $static = 'setAssets' | snippet}
-{set $logo}{include 'file:chunks/icons/logo-icon.tpl'}{/set}
 {set $is_main_page = $_modx->resource.id === 1}
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
         {block 'meta'}
         <title>{$_modx->resource.tv_seotitle ?: $_modx->resource.pagetitle ~' - '~ $_modx->config.site_name}</title>
         <meta name="keywords" content="{$_modx->resource.tv_kws}" itemprop="keywords" />
-        <meta name="description" content="{$_modx->resource.description}" itemprop="description" />
+        <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
         {/block}
         
         <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -21,9 +20,11 @@
     <body>
         <div class="container">
             <header class="header">
-                <div class="header__logo">
-                    {if $is_main_page}<div class="logo">{$logo}</div>{else}<a class="logo" href="/">{$logo}</a>{/if}
-                </div>
+                {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
+                    'wrapperClass' => 'header__logo',
+                    'isMainPage' => $is_main_page,
+                    'classMod' => ''
+                ])}
                 <div class="header__social">
                     <div class="social social_jc_end social_hidden">
                         {set $social}
@@ -38,8 +39,8 @@
                     <div class="contacts contacts_type_list contacts_border_right">
                         {set $phones = [$_modx->config.default_contacts_phone, $_modx->config.default_contacts_mobile]}
                         {foreach $phones as $phones__item}
-                            {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
-                                'value' => $phones__item
+                            {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
+                                'value' => $phones__item,
                                 'hasClassMod' => true,
                                 'icon' => 'phone'
                             ])}
@@ -55,7 +56,7 @@
                             0 => ['value' => $address, 'classMod' => 'contacts__item_color_secondary contacts__item_fs_sm', 'icon' => 'placemark'],
                             1 => ['value' => $_modx->config.default_contacts_hours, 'classMod' => 'contacts__item_color_secondary', 'icon' => 'hours']
                         ] as $address__item}
-                            {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                            {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
                                 'value' => $address__item.value,
                                 'hasClassMod' => false,
                                 'classMod' => $address__item.classMod,
@@ -87,30 +88,27 @@
                 </form>
             </div>
 
-  <nav class="pathway">
-    <a class="pathway__item" href="#">
-      <img src="src/assets/icons/home-icon.svg" alt="">
-      Главная
-    </a>
-    <a class="pathway__item" href="#">Услуги</a>
-    <a class="pathway__item pathway__item_type_current" href="#">Лечение кариеса</a>
-  </nav>
-        {block 'content'}
-            <section class="section content content_offset_px content_type_col">
-                <h1>{$_modx->resource.longtitle ?: $_modx->resource.pagetitle}</h1>
-                {$_modx->resource.content}
-            </section>
-        {/block}
+            {'pdoCrumbs' | snippet: [
+                'showHome' => 1,
+                'showAtHome' => 0,
+                'tplWrapper' => '@FILE chunks/bc/wrapper.tpl'
+                'tplCurrent' => '@FILE chunks/bc/current.tpl'
+                'tplHome' => '@FILE chunks/bc/home.tpl'
+                'tpl' => '@FILE chunks/bc/item.tpl'
+            ]}
+
+            {block 'content'}{include 'file:chunks/blocks/content.tpl'}{/block}
         </div>
 
+        {block 'main'}{/block}
+
         <footer class="footer container">
-            <div class="footer__logo">
-                {if $is_main_page}
-                    <div class="logo logo_bg_white">{$logo}</div>
-                {else}
-                    <a class="logo logo_bg_white" href="/">{$logo}</a>
-                {/if}
-            </div>
+            {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
+                'wrapperClass' => 'footer__logo',
+                'isMainPage' => $is_main_page,
+                'classMod' => 'logo_bg_white'
+            ])}
+
             {'pdoMenu' | snippet: [
                 'parents' => 0,
                 'level' => 1,
@@ -120,6 +118,7 @@
                 'tplOuter' => '@FILE chunks/nav/wrapper.tpl',
                 'tpl' => '@FILE chunks/nav/item.tpl'
             ]}
+
             <div class="footer__nav footer__nav_type_search">
                 <form class="search-form">{$search}</form>                
                 {'pdoMenu' | snippet: [
@@ -132,22 +131,23 @@
                     'tpl' => '@FILE chunks/nav/item.tpl'
                 ]}
             </div>
+
             <div class="footer__contacts">
                 <div class="contacts contacts_offset_none">
-                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
-                        'value' => $_modx->config.default_contacts_phone
+                    {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
+                        'value' => $_modx->config.default_contacts_phone,
                         'hasClassMod' => false,
                         'icon' => 'phone'
                     ])}
-                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                    {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
                         'value' => $_modx->config.default_contacts_subway ~ ', ' ~ $_modx->config.default_contacts_address,
                         'hasClassMod' => false,
                         'classMod' => 'contacts__item_fs_sm'
                         'icon' => 'placemark',
                         'isRow' => true
                     ])}
-                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
-                        'value' => $_modx->config.default_contacts_mobile
+                    {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
+                        'value' => $_modx->config.default_contacts_mobile,
                         'hasClassMod' => false,
                         'icon' => 'phone'
                     ])}
@@ -159,6 +159,7 @@
                 </nav>
             </div>
         </footer>
+
         {$static.js}
     </body>
 </html>

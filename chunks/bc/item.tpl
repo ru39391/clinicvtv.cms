@@ -1,0 +1,1 @@
+<a class="pathway__item" href="{$link}">{$menutitle}</a>
