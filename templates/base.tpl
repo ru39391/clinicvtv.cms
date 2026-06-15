@@ -1,4 +1,5 @@
 {set $static = 'setAssets' | snippet}
+{set $logo}{include 'file:chunks/icons/logo-icon.tpl'}{/set}
 {set $is_main_page = $_modx->resource.id === 1}
 
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <base href="{'site_url' | option}" />
-        
+
         {block 'meta'}
         <title>{$_modx->resource.tv_seotitle ?: $_modx->resource.pagetitle ~' - '~ $_modx->config.site_name}</title>
         <meta name="keywords" content="{$_modx->resource.tv_kws}" itemprop="keywords" />
@@ -18,6 +19,146 @@
         {$static.css}
     </head>
     <body>
+        <div class="container">
+            <header class="header">
+                <div class="header__logo">
+                    {if $is_main_page}<div class="logo">{$logo}</div>{else}<a class="logo" href="/">{$logo}</a>{/if}
+                </div>
+                <div class="header__social">
+                    <div class="social social_jc_end social_hidden">
+                        {set $social}
+                        <button class="btn btn-primary" type="button">Записаться</button>
+                        <a class="social__item" href="{'default_social_max' | config}" target="_blank" rel="nofollow">{include 'file:chunks/icons/max-icon.tpl'}</a>
+                        {/set}
+                        {$social}
+                    </div>
+                </div>
+                <div class="header__contacts">
+                    <button class="nav-toggler" type="button">{include 'file:chunks/icons/nav-icon.tpl'}</button>
+                    <div class="contacts contacts_type_list contacts_border_right">
+                        {set $phones = [$_modx->config.default_contacts_phone, $_modx->config.default_contacts_mobile]}
+                        {foreach $phones as $phones__item}
+                            {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                                'value' => $phones__item
+                                'hasClassMod' => true,
+                                'icon' => 'phone'
+                            ])}
+                        {/foreach}
+                    </div>
+                    <div class="contacts contacts_type_list">
+                        {set $address}
+                        <span class="contacts__item-caption">
+                            {'default_contacts_subway' | config}<span class="contacts__item-address">{'default_contacts_address' | config}</span>
+                        </span>
+                        {/set}
+                        {foreach [
+                            0 => ['value' => $address, 'classMod' => 'contacts__item_color_secondary contacts__item_fs_sm', 'icon' => 'placemark'],
+                            1 => ['value' => $_modx->config.default_contacts_hours, 'classMod' => 'contacts__item_color_secondary', 'icon' => 'hours']
+                        ] as $address__item}
+                            {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                                'value' => $address__item.value,
+                                'hasClassMod' => false,
+                                'classMod' => $address__item.classMod,
+                                'icon' => $address__item.icon,
+                                'isRow' => true
+                            ])}
+                        {/foreach}
+                    </div>
+                </div>
+            </header>
+
+            <div class="nav-wrapper">
+                {'pdoMenu' | snippet: [
+                    'parents' => 0,
+                    'level' => 1,
+                    'limit' => 5,
+                    'outerClass' => 'nav',
+                    'rowClass' => 'nav__item',
+                    'hereClass' => 'is-active',
+                    'tplOuter' => '@FILE chunks/nav/wrapper.tpl',
+                    'tpl' => '@FILE chunks/nav/nav-item.tpl'
+                ]}
+                <form class="search-form search-form_hidden">
+                    {set $search}
+                    <button class="search-form__btn" type="button">{include 'file:chunks/icons/search-icon.tpl'}</button>
+                    <input class="search-form__field" type="text">
+                    {/set}
+                    {$search}
+                </form>
+            </div>
+
+  <nav class="pathway">
+    <a class="pathway__item" href="#">
+      <img src="src/assets/icons/home-icon.svg" alt="">
+      Главная
+    </a>
+    <a class="pathway__item" href="#">Услуги</a>
+    <a class="pathway__item pathway__item_type_current" href="#">Лечение кариеса</a>
+  </nav>
+        {block 'content'}
+            <section class="section content content_offset_px content_type_col">
+                <h1>{$_modx->resource.longtitle ?: $_modx->resource.pagetitle}</h1>
+                {$_modx->resource.content}
+            </section>
+        {/block}
+        </div>
+
+        <footer class="footer container">
+            <div class="footer__logo">
+                {if $is_main_page}
+                    <div class="logo logo_bg_white">{$logo}</div>
+                {else}
+                    <a class="logo logo_bg_white" href="/">{$logo}</a>
+                {/if}
+            </div>
+            {'pdoMenu' | snippet: [
+                'parents' => 0,
+                'level' => 1,
+                'limit' => 0,
+                'outerClass' => 'footer__nav',
+                'rowClass' => 'footer__nav-item',
+                'tplOuter' => '@FILE chunks/nav/wrapper.tpl',
+                'tpl' => '@FILE chunks/nav/item.tpl'
+            ]}
+            <div class="footer__nav footer__nav_type_search">
+                <form class="search-form">{$search}</form>                
+                {'pdoMenu' | snippet: [
+                    'parents' => 0,
+                    'resources' => '55,56,54,57',
+                    'level' => 1,
+                    'showHidden' => 1,
+                    'rowClass' => 'footer__nav-item',
+                    'tplOuter' => '@INLINE {$wrapper}',
+                    'tpl' => '@FILE chunks/nav/item.tpl'
+                ]}
+            </div>
+            <div class="footer__contacts">
+                <div class="contacts contacts_offset_none">
+                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                        'value' => $_modx->config.default_contacts_phone
+                        'hasClassMod' => false,
+                        'icon' => 'phone'
+                    ])}
+                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                        'value' => $_modx->config.default_contacts_subway ~ ', ' ~ $_modx->config.default_contacts_address,
+                        'hasClassMod' => false,
+                        'classMod' => 'contacts__item_fs_sm'
+                        'icon' => 'placemark',
+                        'isRow' => true
+                    ])}
+                    {$_modx->getChunk('@FILE chunks/pages/contacts-row.tpl', [
+                        'value' => $_modx->config.default_contacts_mobile
+                        'hasClassMod' => false,
+                        'icon' => 'phone'
+                    ])}
+                </div>
+                <div class="social social_hidden">{$social}</div>
+                <nav class="footer__nav footer__nav_type_copyright">
+                    <a class="footer__nav-item" href="{57 | url}">{57 | resource: 'pagetitle'}</a>
+                    <p class="footer__text">© {'' | date : 'Y'} Все права защищены</p>
+                </nav>
+            </div>
+        </footer>
         {$static.js}
     </body>
 </html>
