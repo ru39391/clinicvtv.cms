@@ -1,0 +1,1 @@
+<div class="team-wrapper team-wrapper_type_grid">{$output}</div>

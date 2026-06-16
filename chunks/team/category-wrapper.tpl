@@ -1,0 +1,1 @@
+<div class="swiper"><div class="examples-nav swiper-wrapper">{$output}</div></div>
