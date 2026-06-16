@@ -9,20 +9,28 @@
         {if $value@last}{$value}{else}{$value}, {/if}
     {/foreach}
 {/set}
+{set $default_pic = $_modx->config.assets_path ~ 'images/team/nophoto.jpg'}
+{set $pic = 'pthumb' | snippet: ['input' => $props.tv_img ?: $default_pic, 'options' => 'q=100&h=470']}
 
 <div class="team-item">
-    <img class="team-item__img img-fluid" src="{$props.tv_img}" alt="{$pagetitle}" />
+    <picture>
+        <source type="image/webp" srcset="{'pthumb' | snippet: ['input' => $props.tv_img ?: $default_pic, 'options' => 'q=100&h=470&f=webp']}" />
+        <source type="image/jpeg" srcset="{$pic}" />
+        <img class="team-item__img" src="{$pic}" alt="{$pagetitle}" />
+    </picture>
     <div class="team-item__wrapper">
-        <div class="team-item__title">{$pagetitle}</div>
+        <a class="team-item__title" href="{$id | url}">{$pagetitle}</a>
         <ul class="team-item__list">
             <li class="team-item__feature">
-                {include 'file:chunks/icons/checked-icon.tpl'}
+                <span class="color-grey">{include 'file:chunks/icons/checked-icon.tpl'}</span>
                 {$features}
             </li>
+            {if $introtext}
             <li class="team-item__feature">
-                {include 'file:chunks/icons/checked-icon.tpl'}
-                опыт работы с 2022 года
+                <span class="color-grey">{include 'file:chunks/icons/checked-icon.tpl'}</span>
+                опыт работы с {$introtext} года
             </li>
+            {/if}
         </ul>
     </div>
     <div class="team-item__footer">
