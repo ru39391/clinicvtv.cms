@@ -15,6 +15,7 @@
     </section>
 
     {if $_modx->resource.isfolder == 1}
+    <div class="js-team-grid">
         {'pdoResources' | snippet: [
             'parents' => 7,
             'limit' => 0,
@@ -25,13 +26,16 @@
             'tpl' => '@FILE chunks/team/category-item.tpl'
         ]}
 
-        {'pdoResources' | snippet: [
-            'limit' => 0,
-            'depth' => 0,
-            'sortby' => '{"menuindex":"DESC"}',
-            'tplWrapper' => '@FILE chunks/team/wrapper.tpl',
-            'tpl' => '@FILE chunks/team/item.tpl'
-        ]}
+        <div class="tab-content js-tab-content">
+            {'pdoResources' | snippet: [
+                'limit' => 0,
+                'depth' => 0,
+                'sortby' => '{"menuindex":"DESC"}',
+                'tplWrapper' => '@FILE chunks/team/wrapper.tpl',
+                'tpl' => '@FILE chunks/team/item.tpl'
+            ]}
+        </div>
+    </div>
     {else}
         {include 'file:chunks/blocks/content-section.tpl'}
 

@@ -1,1 +1,1 @@
-<div class="swiper"><div class="examples-nav swiper-wrapper">{$output}</div></div>
+<div class="examples-nav js-tab-nav">{$output}</div>

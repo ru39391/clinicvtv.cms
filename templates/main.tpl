@@ -12,6 +12,8 @@
         {include 'file:chunks/blocks/depts.tpl'}
 
         {include 'file:chunks/blocks/content-section.tpl'}
+
+        {include 'file:chunks/blocks/team.tpl'}
     </div>
 </div>
 {/block}

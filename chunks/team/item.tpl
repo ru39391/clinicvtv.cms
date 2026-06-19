@@ -9,7 +9,7 @@
         {if $value@last}{$value}{else}{$value}, {/if}
     {/foreach}
 {/set}
-{set $default_pic = $_modx->config.assets_path ~ 'images/team/nophoto.jpg'}
+{set $default_pic = $_modx->config.default_team_nophoto}
 {set $pic = 'pthumb' | snippet: ['input' => $props.tv_img ?: $default_pic, 'options' => 'q=100&h=470']}
 
 <div class="team-item">
