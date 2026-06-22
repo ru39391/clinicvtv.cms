@@ -3,40 +3,83 @@
 {block 'content'}{/block}
 
 {block 'main'}
-{set $props = $_modx->resource.properties[1].tvs}
-{set $depts = 'handleCategoryData' | snippet: ['input' => $props.tv_dept, 'arr' => 1, 'delimiter' => ',']}
-
-<div class="section section_offset_md container">
+{set $content}
     <section class="content">
         {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
             'classMod' => 'content_py_md',
             'isUnwrapped' => true
         ])}
     </section>
+{/set}
 
+<div class="container">
     {if $_modx->resource.isfolder == 1}
-    <div class="js-team-grid">
-        {'pdoResources' | snippet: [
-            'parents' => 7,
-            'limit' => 0,
-            'depth' => 0,
-            'sortby' => '{"menuindex":"ASC"}',
-            'where' => '{"hidemenu:!=":1}',
-            'tplWrapper' => '@FILE chunks/team/category-wrapper.tpl',
-            'tpl' => '@FILE chunks/team/category-item.tpl'
-        ]}
+        <div class="section section_offset_md">
+            {$content}
 
-        <div class="tab-content js-tab-content">
-            {'pdoResources' | snippet: [
-                'limit' => 0,
-                'depth' => 0,
-                'sortby' => '{"menuindex":"DESC"}',
-                'tplWrapper' => '@FILE chunks/team/wrapper.tpl',
-                'tpl' => '@FILE chunks/team/item.tpl'
-            ]}
+            <div class="js-team-grid">
+                {'pdoResources' | snippet: [
+                    'parents' => 7,
+                    'limit' => 0,
+                    'depth' => 0,
+                    'sortby' => '{"menuindex":"ASC"}',
+                    'where' => '{"hidemenu:!=":1}',
+                    'tplWrapper' => '@FILE chunks/team/category-wrapper.tpl',
+                    'tpl' => '@FILE chunks/team/category-item.tpl'
+                ]}
+
+                <div class="tab-content js-tab-content">
+                    {'pdoResources' | snippet: [
+                        'limit' => 0,
+                        'depth' => 0,
+                        'sortby' => '{"menuindex":"DESC"}',
+                        'tplWrapper' => '@FILE chunks/team/wrapper.tpl',
+                        'tpl' => '@FILE chunks/team/item.tpl'
+                    ]}
+                </div>
+            </div>
         </div>
-    </div>
     {else}
+        {set $props = $_modx->resource.properties[1].tvs}
+        {set $depts = 'handleCategoryData' | snippet: ['input' => $props.tv_dept, 'arr' => 1, 'delimiter' => ',']}
+        {set $team_category}
+            {set $depts_counter = 0}
+            {foreach $depts as $depts_id}
+                {set $depts_counter+=1}
+                {set $props = $depts_id | resource : 'properties'}
+
+                {$_modx->getChunk('@FILE chunks/team/category-item.tpl', [
+                    'id' => $depts_id,
+                    'caption' => 'handleCategoryData' | snippet: ['input' => $props[1].tvs.tv_team_category, 'index' => 1]
+                ])}
+            {/foreach}
+        {/set}
+
+        <div class="section section_offset_md section_pb_none">{$content}</div>
+
+        {set $pic = 'pthumb' | snippet: ['input' => $props.tv_img ?: $_modx->config.default_team_nophoto, 'options' => 'q=100&h=600']}
+        <div class="section section_type_row section_ai_stretch section_dir_reverse">
+            <div class="section__wrapper section__wrapper_type_col section__wrapper_bg_white">
+                {if $depts_counter > 0}{$_modx->getChunk('@FILE chunks/team/category-wrapper.tpl', ['output' => $team_category])}{/if}
+
+                {if $_modx->resource.description}
+                <blockquote class="blockquote blockquote_type_col">
+                    <span class="blockquote__icon">{include 'file:chunks/icons/blockquote-icon.tpl'}</span>
+                    {$_modx->resource.description}
+                </blockquote>
+                {/if}
+
+                <button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>
+            </div>
+            <div class="section__aside">
+                <picture>
+                    <source type="image/webp" srcset="{'pthumb' | snippet: ['input' => $props.tv_img ?: $_modx->config.default_team_nophoto, 'options' => 'q=100&h=600&f=webp']}" />
+                    <source type="image/jpeg" srcset="{$pic}" />
+                    <img class="section__img" src="{$pic}" alt="{$title}" />
+                </picture>
+            </div>
+        </div>
+
         {include 'file:chunks/blocks/content-section.tpl'}
 
         {'pdoResources' | snippet: [
