@@ -6,7 +6,7 @@
 
 <div class="section section_bg_white js-example-tabs">
     <div class="section-title">Примеры работ</div>
-    {'pdoResources' | snippet: [
+    {$output ?: 'pdoResources' | snippet: [
         'parents' => 7,
         'limit' => 0,
         'depth' => 0,

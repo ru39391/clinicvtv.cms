@@ -66,10 +66,9 @@
         {/set}
 
         {if $depts_counter > 0}
-        <div class="section section_bg_white js-example-tabs">
-            <div class="section-title">Примеры работ</div>
-            {$_modx->getChunk('@FILE chunks/content/tab-nav-row.tpl', ['output' => $depts_nav])}
-        </div>
+            {$_modx->getChunk('@FILE chunks/blocks/examples.tpl', [
+                'output' => $_modx->getChunk('@FILE chunks/content/tab-nav-row.tpl', ['output' => $depts_nav])
+            ])}
         {/if}
 
         {include 'file:chunks/blocks/callback-divider.tpl'}

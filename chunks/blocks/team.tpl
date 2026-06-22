@@ -4,11 +4,10 @@
     ////////////////////////////////////////////
 *}
 
-
 <div class="section">
     <div class="section-title">Наша команда</div>
     <div class="tab-section js-team-tabs">
-        {'pdoResources' | snippet: [
+        {$output ?: 'pdoResources' | snippet: [
             'parents' => 7,
             'limit' => 0,
             'depth' => 0,
