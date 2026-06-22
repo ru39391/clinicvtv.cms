@@ -3,9 +3,9 @@
 
 <button
     class="btn-toggler js-tabs-link {if $idx == 1}is-active{/if}"
-    data-pane="price-tab-{$id}"
     data-action="pricelist"
     data-id="{$id}"
+    data-pane="price-tab-{$id}"
     type="button"
 >
     {$name ?: $pagetitle}

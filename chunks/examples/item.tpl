@@ -9,13 +9,13 @@
         <picture>
             <source type="image/webp" srcset="{'pthumb' | snippet: ['input' => $img_after, 'options' => 'q=100&h=340&f=webp']}" />
             <source type="image/jpeg" srcset="{$pic_after}" />
-            <img class="img-cover" src="{$pic_after}" alt="{$alt}" />
+            <img class="img-cover" src="{$pic_after}" alt="{$desc}" />
         </picture>
         <div class="examples-item__pic">
             <picture>
                 <source type="image/webp" srcset="{'pthumb' | snippet: ['input' => $img_before, 'options' => 'q=100&h=340&f=webp']}" />
                 <source type="image/jpeg" srcset="{$img_before}" />
-                <img class="img-cover" src="{$img_before}" alt="{$alt}" />
+                <img class="img-cover" src="{$img_before}" alt="{$desc}" />
             </picture>
         </div>
         <div class="examples-item__footer">

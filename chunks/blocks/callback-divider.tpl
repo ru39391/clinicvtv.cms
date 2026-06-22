@@ -1,3 +1,9 @@
+{*
+    /////////////////////////////
+    ///  Записаться на приём  ///
+    /////////////////////////////
+*}
+
 <div class="section">
     <div class="section-card">
         <div class="section-intro">

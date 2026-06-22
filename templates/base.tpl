@@ -35,7 +35,10 @@
                     </div>
                 </div>
                 <div class="header__contacts">
-                    <button class="nav-toggler" type="button">{include 'file:chunks/icons/nav-icon.tpl'}</button>
+                    <button class="nav-toggler js-nav-toggler" data-target="js-nav" type="button">
+                        <span class="nav-toggler__show-icon">{include 'file:chunks/icons/nav-icon.tpl'}</span>
+                        <span class="nav-toggler__close-icon">{include 'file:chunks/icons/close-icon.tpl'}</span>
+                    </button>
                     <div class="contacts contacts_type_list contacts_border_right">
                         {set $phones = [$_modx->config.default_contacts_phone, $_modx->config.default_contacts_mobile]}
                         {foreach $phones as $phones__item}
@@ -68,7 +71,7 @@
                 </div>
             </header>
 
-            <div class="nav-wrapper">
+            <div class="nav-wrapper js-nav">
                 {'pdoMenu' | snippet: [
                     'parents' => 0,
                     'level' => 1,

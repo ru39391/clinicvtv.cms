@@ -1,11 +1,12 @@
 {set $props = $properties[1].tvs}
+{set $name = $props.tv_example_category | handleCategoryData}
 
 <button
     class="btn-toggler js-tabs-link {if $idx == 1}is-active{/if}"
-    data-action="team"
+    data-action="examples{$query}"
     data-id="{$id}"
-    data-pane="team-tab-{$id}"
+    data-pane="examples-tab-{$id}"
     type="button"
 >
-    {$props.tv_team_category | handleCategoryData}
+    {$name ?: $pagetitle}
 </button>
