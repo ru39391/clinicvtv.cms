@@ -1,0 +1,1 @@
+<div class="card__list">{$wrapper ?: $output}</div>

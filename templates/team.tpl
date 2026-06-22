@@ -52,25 +52,25 @@
             'tpl' => '@FILE chunks/testimonials/item.tpl',
         ]}
 
-        <div class="section section_bg_white">
+        {set $depts_nav}
+            {set $depts_counter = 0}
+            {foreach $depts as $depts_id}
+                {set $depts_counter+=1}
+                {$_modx->getChunk('@FILE chunks/examples/btn-toggler.tpl', [
+                    'id' => $depts_id,
+                    'query' => '?spec_id=' ~ $_modx->resource.id,
+                    'pagetitle' => $depts_id | resource : 'pagetitle',
+                    'properties' => $depts_id | resource : 'properties',
+                ])}
+            {/foreach}
+        {/set}
+
+        {if $depts_counter > 0}
+        <div class="section section_bg_white js-example-tabs">
             <div class="section-title">Примеры работ</div>
-            <div class="examples-nav">
-                {foreach $depts as $depts_id}
-                <button class="btn-toggler" type="button">{$depts_id | resource : 'pagetitle'}</button>
-                {/foreach}
-            </div>
-            {'pdoResources' | snippet: [
-                'class' => 'exampleItem',
-                'loadModels' => 'example',
-                'limit' => 0,
-                'where' => [
-                    'spec_id' => $_modx->resource.id,
-                ],
-                'sortby' => '{"createdAt":"DESC"}',
-                'tplWrapper' => '@FILE chunks/examples/wrapper.tpl',
-                'tpl' => '@FILE chunks/examples/item.tpl',
-            ]}
+            {$_modx->getChunk('@FILE chunks/content/tab-nav-row.tpl', ['output' => $depts_nav])}
         </div>
+        {/if}
 
         {include 'file:chunks/blocks/callback-divider.tpl'}
     {/if}

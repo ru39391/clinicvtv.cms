@@ -7,14 +7,37 @@
 
     <div class="container">
     {if $_modx->resource.id == 7}
+        {'pdoMenu' | snippet: [
+            'parents' => $_modx->resource.id,
+            'level' => 2,
+            'limit' => 0,
+            'showHidden' => 1,
+            'tplOuter' => '@FILE chunks/depts/nav-wrapper.tpl',
+            'tpl' => '@FILE chunks/depts/nav-item.tpl',
+            'tplInner' => '@FILE chunks/depts/subnav-wrapper.tpl',
+            'tplInnerRow' => '@FILE chunks/depts/subnav-item.tpl',
+        ]}
+
         {include 'file:chunks/blocks/content-section.tpl'}
 
         {include 'file:chunks/blocks/team.tpl'}
 
         {include 'file:chunks/blocks/features.tpl'}
     {else}
+        {set $props = $_modx->resource.properties[1].tvs}
+        {set $title = ($_modx->resource.longtitle ?: $_modx->resource.menutitle) ?: $_modx->resource.pagetitle}
         <section class="section content content_offset_px">
-            <h1>{$_modx->resource.longtitle ?: $_modx->resource.menutitle}</h1>
+            <h1>{$title}</h1>
+            <div class="card card_type_plain">
+                <div class="card__media"><img class="img-fluid" src="{$props.tv_img}" alt="{$title}" /></div>
+                {'pdoResources' | snippet: [
+                    'parents' => $_modx->resource.id,
+                    'level' => 1,
+                    'limit' => 0,
+                    'tplWrapper' => '@FILE chunks/depts/subnav-wrapper.tpl',
+                    'tpl' => '@FILE chunks/depts/subnav-item.tpl',
+                ]}
+            </div>
         </section>
 
         {set $dept = [
