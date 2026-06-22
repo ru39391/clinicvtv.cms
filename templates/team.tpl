@@ -3,16 +3,15 @@
 {block 'content'}{/block}
 
 {block 'main'}
-{set $content}
-    <section class="content">
-        {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
-            'classMod' => 'content_py_md',
-            'isUnwrapped' => true
-        ])}
-    </section>
-{/set}
+    {set $content}
+        <section class="content">
+            {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
+                'classMod' => 'content_py_md',
+                'isUnwrapped' => true
+            ])}
+        </section>
+    {/set}
 
-<div class="container">
     {if $_modx->resource.isfolder == 1}
         <div class="section section_offset_md">
             {$content}
@@ -116,5 +115,4 @@
 
         {include 'file:chunks/blocks/callback-divider.tpl'}
     {/if}
-</div>
 {/block}

@@ -3,21 +3,22 @@
 
 <!DOCTYPE html>
 <html lang="ru" itemscope itemtype="http://schema.org/WebPage">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <base href="{'site_url' | option}" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="{'site_url' | option}" />
 
-        {block 'meta'}
-        <title>{$_modx->resource.tv_seotitle ?: $_modx->resource.pagetitle ~' - '~ $_modx->config.site_name}</title>
-        <meta name="keywords" content="{$_modx->resource.tv_kws}" itemprop="keywords" />
-        <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
-        {/block}
-        
-        <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        {$static.css}
-    </head>
-    <body>
+    {block 'meta'}
+    <title>{$_modx->resource.tv_seotitle ?: $_modx->resource.pagetitle ~' - '~ $_modx->config.site_name}</title>
+    <meta name="keywords" content="{$_modx->resource.tv_kws}" itemprop="keywords" />
+    <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
+    {/block}
+
+    <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    {$static.css}
+</head>
+<body>
+    <div class="wrapper">
         <div class="container">
             <header class="header">
                 {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
@@ -101,10 +102,11 @@
             ]}
 
             {block 'content'}{include 'file:chunks/blocks/content.tpl'}{/block}
+
+            {block 'main'}{/block}
         </div>
-
-        {block 'main'}{/block}
-
+    </div>
+    <div class="footer-holder">
         <footer class="footer container">
             {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
                 'wrapperClass' => 'footer__logo',
@@ -162,7 +164,8 @@
                 </nav>
             </div>
         </footer>
+    </div>
 
-        {$static.js}
-    </body>
+    {$static.js}
+</body>
 </html>

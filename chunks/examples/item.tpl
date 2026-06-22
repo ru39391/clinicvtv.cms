@@ -4,7 +4,7 @@
     {$name}, доктор {$spec_id | resource : 'pagetitle'}
 {/set}
 
-<div class="swiper-slide w-auto">
+<div class="examples-slide swiper-slide w-auto">
     <div class="examples-item">
         <picture>
             <source type="image/webp" srcset="{'pthumb' | snippet: ['input' => $img_after, 'options' => 'q=100&h=340&f=webp']}" />

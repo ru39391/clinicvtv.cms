@@ -1,4 +1,4 @@
-<div class="swiper-slide w-auto">
+<div class="testimonials-slide swiper-slide w-auto">
     <div class="testimonials-item">
         <div class="testimonials-item__header">
             <span class="color-grey">{include 'file:chunks/icons/blockquote-icon.tpl'}</span>

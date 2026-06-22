@@ -5,7 +5,6 @@
 {block 'main'}
     {include 'file:chunks/blocks/promo.tpl'}
 
-    <div class="container">
     {if $_modx->resource.id == 7}
         {'pdoMenu' | snippet: [
             'parents' => $_modx->resource.id,
@@ -33,7 +32,7 @@
                 <div class="card__media"><img class="img-fluid" src="{$props.tv_img}" alt="{$title}" /></div>
                 {'pdoResources' | snippet: [
                     'parents' => $_modx->resource.id,
-                    'level' => 1,
+                    'depth' => 0,
                     'limit' => 0,
                     'tplWrapper' => '@FILE chunks/depts/subnav-wrapper.tpl',
                     'tpl' => '@FILE chunks/depts/subnav-item.tpl',
@@ -64,5 +63,4 @@
             ])}
         {/if}
     {/if}
-    </div>
 {/block}
