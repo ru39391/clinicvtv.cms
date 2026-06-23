@@ -1,0 +1,1 @@
+{$_modx->resource.parent}

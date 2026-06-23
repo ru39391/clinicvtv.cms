@@ -7,9 +7,9 @@
 
     {include 'file:chunks/blocks/content.tpl'}
 
+    {include 'file:chunks/blocks/cards.tpl'}
+
     <!--
-    Блок с карточками - MIGX
-    
     Прейскурант - dept_id из tv или parent
 
     Блок с белой подложкой, включает:
@@ -34,12 +34,12 @@
 
     Отзывы - получаем dept_id, ищем spec_id, которые сюда относятся
     -->
+    {include 'file:chunks/blocks/testimonials.tpl'}
 
     {include 'file:chunks/blocks/features.tpl'}
 
-    <!--
-    FAQ - MIGX
-    -->
+    {include 'file:chunks/blocks/faq.tpl'}
+
     {'pdoResources' | snippet: [
         'parents' => 55,
         'tplWrapper' => '@FILE chunks/articles/wrapper.tpl',
