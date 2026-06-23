@@ -7,7 +7,7 @@
 <div class="section">
     <div class="section-title">Прейскурант</div>
     <div class="tab-section js-price-tabs">
-        {'pdoResources' | snippet: [
+        {$output ?: 'pdoResources' | snippet: [
             'parents' => 7,
             'limit' => 0,
             'depth' => 0,

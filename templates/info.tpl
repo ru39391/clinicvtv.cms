@@ -3,15 +3,24 @@
 {block 'content'}{/block}
 
 {block 'main'}
+    {set $dept_id = $_modx->resource.tv_dept_id ?: $_modx->resource.parent}
+
     {include 'file:chunks/blocks/promo.tpl'}
 
     {include 'file:chunks/blocks/content.tpl'}
 
     {include 'file:chunks/blocks/cards.tpl'}
 
-    <!--
-    Прейскурант - dept_id из tv или parent
+    {set $price_nav = $_modx->getChunk('@FILE chunks/price/btn-toggler.tpl', [
+        'id' => $dept_id,
+        'pagetitle' => $dept_id | resource : 'pagetitle',
+        'properties' => $dept_id | resource : 'properties',
+    ])}
+    {$_modx->getChunk('@FILE chunks/blocks/price.tpl', [
+        'output' => $_modx->getChunk('@FILE chunks/content/tab-nav.tpl', ['output' => $price_nav])
+    ])}
 
+    <!--
     Блок с белой подложкой, включает:
         content-row
         цитата
@@ -29,12 +38,18 @@
         plain text
         колонки
         plain text
-    
-    Team - dept_id из tv или parent
-
-    Отзывы - получаем dept_id, ищем spec_id, которые сюда относятся
     -->
-    {include 'file:chunks/blocks/testimonials.tpl'}
+
+    {set $team_nav = $_modx->getChunk('@FILE chunks/team/btn-toggler.tpl', [
+        'id' => $dept_id,
+        'pagetitle' => $dept_id | resource : 'pagetitle',
+        'properties' => $dept_id | resource : 'properties',
+    ])}
+    {$_modx->getChunk('@FILE chunks/blocks/team.tpl', [
+        'output' => $_modx->getChunk('@FILE chunks/content/tab-nav.tpl', ['output' => $team_nav])
+    ])}
+
+    {$_modx->getChunk('@FILE chunks/blocks/testimonials.tpl', ['dept_id' => $dept_id])}
 
     {include 'file:chunks/blocks/features.tpl'}
 

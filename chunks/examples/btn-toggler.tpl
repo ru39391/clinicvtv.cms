@@ -1,3 +1,6 @@
+{*
+    // TODO: стандартизировать все btn-toggler
+*}
 {set $props = $properties[1].tvs}
 {set $name = $props.tv_example_category | handleCategoryData}
 
