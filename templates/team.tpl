@@ -61,12 +61,7 @@
             <div class="section__wrapper section__wrapper_type_col section__wrapper_bg_white">
                 {if $depts_counter > 0}{$_modx->getChunk('@FILE chunks/team/category-wrapper.tpl', ['output' => $team_category])}{/if}
 
-                {if $_modx->resource.description}
-                <blockquote class="blockquote blockquote_type_col">
-                    <span class="blockquote__icon">{include 'file:chunks/icons/blockquote-icon.tpl'}</span>
-                    {$_modx->resource.description}
-                </blockquote>
-                {/if}
+                {if $_modx->resource.description}{$_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', ['content' => $_modx->resource.description])}{/if}
 
                 <button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>
             </div>
