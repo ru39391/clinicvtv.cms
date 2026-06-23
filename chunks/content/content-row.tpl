@@ -36,5 +36,8 @@
 {if $isFormVisible}
   {include 'file:chunks/blocks/callback-divider.tpl'}
 {else}
-  {$isBlockquoteVisible ? $_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', ['content' => $content]) : $sectionRow}
+  {$isBlockquoteVisible
+    ? '<div class="section section_offset_px">' ~ $_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', ['content' => $content]) ~ '</div>'
+    : $sectionRow
+  }
 {/if}
