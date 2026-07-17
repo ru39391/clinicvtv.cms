@@ -4,7 +4,7 @@
     /////////////////////////////////////////////
 *}
 
-<div class="section section_bg_white js-example-tabs">
+<div class="section section_bg_white section_type_rounded js-example-tabs">
     <div class="section-title">Примеры работ</div>
     {$output ?: 'pdoResources' | snippet: [
         'parents' => 7,

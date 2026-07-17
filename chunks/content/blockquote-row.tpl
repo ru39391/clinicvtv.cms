@@ -1,4 +1,4 @@
-<blockquote class="blockquote blockquote_type_col">
+<blockquote class="blockquote">
     <span class="blockquote__icon">{include 'file:chunks/icons/blockquote-icon.tpl'}</span>
     {$content}
 </blockquote>

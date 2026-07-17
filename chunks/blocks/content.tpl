@@ -1,6 +1,6 @@
 {set $content}
     <h1>{$_modx->resource.longtitle ?: $_modx->resource.pagetitle}</h1>
-    {$_modx->resource.content}
+    {$pls ?: $_modx->resource.content}
 {/set}
 
 {if $isUnwrapped}

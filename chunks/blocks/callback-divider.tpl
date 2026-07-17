@@ -4,7 +4,7 @@
     /////////////////////////////
 *}
 
-<div class="section">
+<div class="section{$classMod}">
     <div class="section-card">
         <div class="section-intro">
             <div class="section-title">Записаться на приём</div>

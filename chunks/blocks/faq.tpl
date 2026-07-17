@@ -23,7 +23,7 @@
     {/foreach}
 {/set}
 {if $faq_counter > 0}
-<div class="section section_bg_white section_type_row section_type_cols">
+<div class="section section_bg_white section_type_rounded section_type_row section_type_cols">
     <div class="section__aside">
         <div class="section-title section-title_mb_md">{$faq_section_title}</div>
         <div class="section-desc section-desc_type_plain">{$faq_section_intro}</div>

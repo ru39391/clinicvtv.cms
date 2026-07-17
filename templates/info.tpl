@@ -7,7 +7,9 @@
 
     {include 'file:chunks/blocks/promo.tpl'}
 
-    {include 'file:chunks/blocks/content.tpl'}
+    {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
+        'pls' => $_modx->resource.tv_content_ext,
+    ])}
 
     {include 'file:chunks/blocks/cards.tpl'}
 
@@ -19,6 +21,8 @@
     {$_modx->getChunk('@FILE chunks/blocks/price.tpl', [
         'output' => $_modx->getChunk('@FILE chunks/content/tab-nav.tpl', ['output' => $price_nav])
     ])}
+
+    {$_modx->resource.content}
 
     <!--
     Блок с белой подложкой, включает:
