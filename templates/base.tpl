@@ -101,9 +101,11 @@
                 'tpl' => '@FILE chunks/bc/item.tpl'
             ]}
 
-            {block 'content'}{include 'file:chunks/blocks/content.tpl'}{/block}
-
-            {block 'main'}{/block}
+            {block 'main'}
+                {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
+                    'classMod' => 'section_offset_md',
+                ])}
+            {/block}
         </div>
     </div>
     <div class="footer-holder">

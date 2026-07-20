@@ -1,0 +1,1 @@
+<a class="pagination__item pagination__item_type_btn" href="{$href}">{$_modx->getChunk('@FILE chunks/icons/arrow-right-icon.tpl')}</a>

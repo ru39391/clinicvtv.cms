@@ -1,0 +1,1 @@
+<div class="promo promo_type_grid">{$output}</div>

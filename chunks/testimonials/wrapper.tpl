@@ -1,3 +1,6 @@
+{set $isSlide = $isPlainRow != 1}
+
+{if $isSlide}
 <div class="section">
     <div class="section-title">Отзывы наших пацентов</div>
     <div class="swiper js-carousel" data-loop="0">
@@ -8,3 +11,6 @@
         </div>
     </div>
 </div>
+{else}
+<div class="testimonials-wrapper testimonials-wrapper_type_grid">{$output}</div>
+{/if}

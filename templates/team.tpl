@@ -1,13 +1,11 @@
 {extends 'file:templates/base.tpl'}
 
-{block 'content'}{/block}
-
 {block 'main'}
     {set $content}
         <section class="content">
             {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
-                'classMod' => 'content_py_md',
-                'isUnwrapped' => true
+                'isUnwrapped' => true,
+                'pls' => $_modx->resource.isfolder == 1 ? '' : $_modx->resource.tv_content_ext
             ])}
         </section>
     {/set}
@@ -61,7 +59,12 @@
             <div class="section__wrapper section__wrapper_type_col section__wrapper_bg_white">
                 {if $depts_counter > 0}{$_modx->getChunk('@FILE chunks/team/category-wrapper.tpl', ['output' => $team_category])}{/if}
 
-                {if $_modx->resource.description}{$_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', ['content' => $_modx->resource.description])}{/if}
+                {if $_modx->resource.description}
+                    {$_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', [
+                        'classMod' => 'blockquote_type_col',
+                        'content' => $_modx->resource.description
+                    ])}
+                {/if}
 
                 <button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>
             </div>
@@ -74,7 +77,7 @@
             </div>
         </div>
 
-        {include 'file:chunks/blocks/content-section.tpl'}
+        {$_modx->resource.content}
 
         {'pdoResources' | snippet: [
             'class' => 'testimonialItem',

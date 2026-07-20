@@ -6,5 +6,5 @@
 {if $isUnwrapped}
     {$content}
 {else}
-    <section class="section content content_offset_px {$classMod ?: 'content_type_col'}">{$content}</section>
+    <section class="section content {$classMod ?: 'content_offset_px content_type_col'}">{$content}</section>
 {/if}

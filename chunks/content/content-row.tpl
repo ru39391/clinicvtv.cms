@@ -3,25 +3,24 @@
 {set $startClassMod = $first ? ' section_type_start' : ''}
 {set $endClassMod = $last ? ' section_type_end' : ''}
 {set $innerClassMod = $inner ? ' section_type_inner' : ''}
-{set $bgClassMod = $isBgWhite ? ' section_bg_white' ~ $startClassMod ~ $endClassMod ~ $innerClassMod : ''}
+{set $bgClassMod = $startClassMod ~ $endClassMod ~ $innerClassMod ~ ($isBgWhite ? ' section_bg_white' : '')}
 
 {set $rowClassMod = 'section section_type_row' ~ $bgClassMod}
 {set $sectionClass = $isRowReversed ? $rowClassMod ~ ' section_dir_reverse' : $rowClassMod}
 
-{set $titleClassMod = $isTitleCentered ? ' ta-center' : ''}
-{set $sectionTitleClass = 'section-title' ~ $titleClassMod}
+{set $sectionTitleCenteredMod = $isTitleCentered ? ' section_title_centered' : ''}
 
 {set $contentRow}
-  {if $title}<div class="{$sectionTitleClass}">{$title}</div>{/if}
+  {if $title}<div class="section-title">{$title}</div>{/if}
   {if $content}
-    <div class="content{$isContentColumned ? ' content_type_columned' : ''}">{$content}</div>
+    <div class="{if $img}content{else}content{$isContentColumned ? ' content_type_columned' : ''}{/if}">{$content}</div>
   {/if}
   {if $isBtnVisible}<button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>{/if}
 {/set}
 
 {set $sectionRow}
   {if $img}
-  <div class="{$sectionClass}">
+  <div class="{$sectionClass}{$sectionTitleCenteredMod}">
     <div class="section__wrapper">{$contentRow}</div>
     <div class="section__aside">
       <picture>
@@ -37,7 +36,7 @@
 {/set}
 
 {set $blockquoteRow}
-  <div class="section section_offset_px{$bgClassMod}">
+  <div class="section section_type_blockquote{$bgClassMod}">
     {$_modx->getChunk('@FILE chunks/content/blockquote-row.tpl', ['content' => $content])}
   </div>
 {/set}

@@ -1,7 +1,5 @@
 {extends 'file:templates/base.tpl'}
 
-{block 'content'}{/block}
-
 {block 'main'}
     {include 'file:chunks/blocks/promo.tpl'}
 

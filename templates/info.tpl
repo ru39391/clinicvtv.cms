@@ -1,7 +1,5 @@
 {extends 'file:templates/base.tpl'}
 
-{block 'content'}{/block}
-
 {block 'main'}
     {set $dept_id = $_modx->resource.tv_dept_id ?: $_modx->resource.parent}
 
@@ -23,26 +21,6 @@
     ])}
 
     {$_modx->resource.content}
-
-    <!--
-    Блок с белой подложкой, включает:
-        content-row
-        цитата
-        колонки
-        plain text
-        запись на приём
-
-    Блок с белой подложкой, включает:
-        plain text
-        content-row
-
-    Цитата
-
-    Блок с белой подложкой, включает:
-        plain text
-        колонки
-        plain text
-    -->
 
     {set $team_nav = $_modx->getChunk('@FILE chunks/team/btn-toggler.tpl', [
         'id' => $dept_id,
