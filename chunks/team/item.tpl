@@ -39,7 +39,7 @@
             class="btn btn-primary btn-sm js-modal-btn"
             type="button"
             data-target="form"
-            data-title="Записаться к специалисту, {$pagetitle}"
+            data-title="{$pagetitle}, запись к специалисту - категория"
         >
             Записаться
         </button>

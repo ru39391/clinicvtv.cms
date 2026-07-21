@@ -70,7 +70,7 @@
                     class="btn btn-primary btn-md js-modal-btn"
                     type="button"
                     data-target="form"
-                    data-title="Записаться к специалисту, кнопка на стр. {$_modx->resource.pagetitle}"
+                    data-title="{$_modx->resource.pagetitle}, запись к специалисту - страница"
                 >
                     Записаться на сайте
                 </button>

@@ -20,7 +20,7 @@
     class="btn btn-primary btn-md js-modal-btn"
     type="button"
     data-target="form"
-    data-title="Записаться на сайте, кнопка в блоке формируемого контента"
+    data-title="Пользовательский контент"
   >
     Записаться на сайте
   </button>

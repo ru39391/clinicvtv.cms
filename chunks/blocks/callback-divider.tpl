@@ -16,7 +16,7 @@
                 class="btn btn-primary btn-md js-modal-btn"
                 type="button"
                 data-target="form"
-                data-title="Записаться на приём, блок-разделитель"
+                data-title="Записаться на приём, блок контактов"
             >
                 Записаться на сайте
             </button>

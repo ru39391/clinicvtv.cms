@@ -33,7 +33,7 @@
                             class="btn btn-primary js-modal-btn"
                             type="button"
                             data-target="form"
-                            data-title="Записаться, кнопка в блоке соц. сетей"
+                            data-title="Записаться, блок соц. сетей"
                         >
                             Записаться
                         </button>

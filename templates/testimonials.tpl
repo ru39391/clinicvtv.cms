@@ -1,13 +1,27 @@
 {extends 'file:templates/base.tpl'}
 
 {block 'main'}
-    <div class="section section_offset_md">
+    {set $btn}
+        <button
+            class="btn btn-primary btn-md js-modal-btn"
+            type="button"
+            data-target="testimonials"
+            data-title="Оставить отзыв"
+        >
+            Оставить отзыв
+        </button>
+    {/set}
+
+    <div class="section section_offset_md section_pb_none">
         <section class="content">
             {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
                 'isUnwrapped' => true,
+                'pls' => $btn ~ $_modx->resource.content
             ])}
         </section>
+    </div>
 
+    <div class="section section_offset_md">
         {'!pdoPage' | snippet: [
             'class' => 'testimonialItem',
             'loadModels' => 'testimonial',
@@ -29,4 +43,11 @@
     {if $_modx->getPlaceholder('pageCount') > 1}
         {$_modx->getPlaceholder('page.nav')}
     {/if}
+{/block}
+
+{block 'forms'}
+    {$_modx->getChunk('@FILE chunks/blocks/form.tpl', [
+        'action' => '/testimonials',
+        'target' => 'testimonials',
+    ])}
 {/block}

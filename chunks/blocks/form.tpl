@@ -1,7 +1,9 @@
-<div id="form" class="modal-overlay">
+<div id="{$target ?: 'form'}" class="modal-overlay">
     <div class="modal modal_type_plain">
         <div class="modal-wrapper">
-            <button class="modal-close js-modal-close" type="button">×</button>
+            <button class="modal-close js-modal-close" type="button">
+                {include 'file:chunks/icons/close-icon.tpl'}
+            </button>
             <div class="modal-content">
                 <div class="modal-container form-container js-form">
                     <div class="form-header js-form-header">
@@ -13,7 +15,7 @@
                         Спасибо! Мы свяжемся с Вами в ближайшее время.
                     </div>
 
-                    <form class="form js-form-content" data-ym="" data-action="/feedback">
+                    <form class="form js-form-content" data-ym="" data-action="{$action ?: '/feedback'}">
                         <div class="form-title form-title_type_error js-form-content-failure is-hidden">
                           Не удалось отправить сообщение, повторите попытку позже.
                         </div>
@@ -22,10 +24,10 @@
                             <div class="form__item is-hidden js-input-holder">
                                 <input
                                   class="js-input-title js-input-field js-input-type-default"
-                                  name="form"
+                                  name="src"
                                   value=""
                                   type="hidden"
-                                  data-name="form"
+                                  data-name="src"
                                 />
                             </div>
                             <div class="form__item is-hidden js-input-holder">
