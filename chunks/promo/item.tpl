@@ -20,7 +20,14 @@
             <div class="promo__title">{$pagetitle}</div>
             {if $introtext}<div class="promo__desc">{$introtext}</div>{/if}
             {if $isModWebLink}
-            <button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>
+            <button
+              class="btn btn-primary btn-md js-modal-btn"
+              type="button"
+              data-target="form"
+              data-title="Записаться на сайте, кнопка в слайде {$pagetitle}"
+            >
+              Записаться на сайте
+            </button>
             {else}
             <a class="btn btn-primary btn-md" href="{$id | url}">Подробнее</a>
             {/if}

@@ -5,63 +5,86 @@
             <div class="modal-content">
                 <div class="modal-container form-container js-form">
                     <div class="form-header js-form-header">
-                        <div class="form-title js-form-title">Заказать звонок</div>
-                        <div class="form-desc">Оставьте свой номер, и мы свяжемся с вами в ближайшее время</div>
+                        <div class="form-title js-form-title">Оставьте свой номер</div>
+                        <div class="form-desc">и мы свяжемся с вами в ближайшее время</div>
                     </div>
 
                     <div class="form-title js-form-content-success is-hidden">
                         Спасибо! Мы свяжемся с Вами в ближайшее время.
                     </div>
 
-                    <form class="form form_width_max" data-ym="">
-                        <div class="form-desc form-desc_type_error js-form-content-failure is-hidden">Не удалось отправить сообщение, повторите попытку позже.</div>
-
-                        <div class="form__item is-hidden js-input-holder">
-                            <input
-                                class="js-input-title js-input-field js-input-type-default"
-                                name="modal_form"
-                                value="Заказать звонок"
-                                type="hidden"
-                                data-name="form"
-                            />
+                    <form class="form js-form-content" data-ym="" data-action="/feedback">
+                        <div class="form-title form-title_type_error js-form-content-failure is-hidden">
+                          Не удалось отправить сообщение, повторите попытку позже.
                         </div>
+
                         <fieldset class="form__fieldset">
-                            <div class="form__item form__item_size_xl js-input-holder">
+                            <div class="form__item is-hidden js-input-holder">
                                 <input
-                                    class="form__field js-input-field js-input-type-default"
-                                    data-name="name"
-                                    name="modal_name"
-                                    value=""
-                                    type="text"
-                                    placeholder="Ваше имя"
+                                  class="js-input-title js-input-field js-input-type-default"
+                                  name="form"
+                                  value=""
+                                  type="hidden"
+                                  data-name="form"
                                 />
+                            </div>
+                            <div class="form__item is-hidden js-input-holder">
+                                <input
+                                  class="js-input-field"
+                                  name="pageId"
+                                  value="{$_modx->resource.id}"
+                                  type="hidden"
+                                  data-name="pageId"
+                                />
+                            </div>
+                            <div class="form__item is-hidden js-input-holder">
+                                <input
+                                  class="js-input-field"
+                                  name="pagetitle"
+                                  value="{$_modx->resource.pagetitle}"
+                                  type="hidden"
+                                  data-name="pagetitle"
+                                />
+                            </div>
+                            <div class="form__item js-input-holder">
+                                <input
+                                  class="form__field js-input-field js-input-type-phone"
+                                  data-name="phone"
+                                  name="phone"
+                                  value=""
+                                  type="tel"
+                                  placeholder="+7 (999) 999-99-99"
+                                />
+                                <label class="form__label">Телефон</label>
                                 <span class="form-error js-error-message"></span>
                             </div>
-                            <div class="form__item form__item_size_xl js-input-holder">
+                            <div class="form__item js-input-holder">
                                 <input
-                                    class="form__field js-input-field js-input-type-phone"
-                                    data-name="phone"
-                                    name="modal_phone"
-                                    value=""
-                                    type="tel"
-                                    placeholder="+7 (999) 999-99-99"
+                                  class="form__field js-input-field js-input-type-default"
+                                  data-name="name"
+                                  name="name"
+                                  value=""
+                                  type="text"
+                                  placeholder="Ваше имя"
                                 />
+                                <label class="form__label">Ваше имя</label>
                                 <span class="form-error js-error-message"></span>
                             </div>
                         </fieldset>
                         <div class="form-toggler-row js-input-holder">
                             <input
-                                id="modal_confirm"
-                                class="form-toggler form-toggler_type_checkbox js-input-checkbox"
-                                type="checkbox"
-                                checked
+                              id="feedback_confirm"
+                              class="form-toggler js-input-checkbox js-checkbox-required"
+                              type="checkbox"
+                              checked
                             />
-                            <label class="form__label form__label_fs_md" for="modal_confirm">
-                                <span class="form-toggler-icon"></span>
+                            <label class="form-toggler-label form__label" for="feedback_confirm">
+                                <span class="form-toggler-icon">{include 'file:chunks/icons/checked-icon.tpl'}</span>
                                 <span>Даю согласие на <a class="td-underline" href="{57 | url}" target="_blank">обработку персональных данных</a></span>
                             </label>
+                            <span class="form-error js-error-message">Примите соглашение на обработку персональных данных</span>
                         </div>
-                        <button class="btn btn-plain btn-inverted btn-xl js-form-submit" type="submit">Заказать программу обучения</button>
+                        <button class="btn btn-md btn-primary js-form-submit" type="submit">Отправить</button>
                     </form>
                 </div>
             </div>

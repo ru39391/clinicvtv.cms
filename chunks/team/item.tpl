@@ -35,6 +35,13 @@
     </div>
     <div class="team-item__footer">
         <a class="team-item__link" href="{$id | url}">Отзывы о докторе</a>
-        <button class="btn btn-primary btn-sm" type="button">Записаться</button>
+        <button
+            class="btn btn-primary btn-sm js-modal-btn"
+            type="button"
+            data-target="form"
+            data-title="Записаться к специалисту, {$pagetitle}"
+        >
+            Записаться
+        </button>
     </div>
 </div>

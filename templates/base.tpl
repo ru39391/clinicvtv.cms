@@ -29,7 +29,14 @@
                 <div class="header__social">
                     <div class="social social_jc_end social_hidden">
                         {set $social}
-                        <button class="btn btn-primary" type="button">Записаться</button>
+                        <button
+                            class="btn btn-primary js-modal-btn"
+                            type="button"
+                            data-target="form"
+                            data-title="Записаться, кнопка в блоке соц. сетей"
+                        >
+                            Записаться
+                        </button>
                         <a class="social__item" href="{'default_social_max' | config}" target="_blank" rel="nofollow">{include 'file:chunks/icons/max-icon.tpl'}</a>
                         {/set}
                         {$social}
@@ -168,6 +175,9 @@
         </footer>
     </div>
 
+    {include 'file:chunks/blocks/form.tpl'}
+
+    {block 'forms'}{/block}
     {$static.js}
 </body>
 </html>

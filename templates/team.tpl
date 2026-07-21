@@ -66,7 +66,14 @@
                     ])}
                 {/if}
 
-                <button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>
+                <button
+                    class="btn btn-primary btn-md js-modal-btn"
+                    type="button"
+                    data-target="form"
+                    data-title="Записаться к специалисту, кнопка на стр. {$_modx->resource.pagetitle}"
+                >
+                    Записаться на сайте
+                </button>
             </div>
             <div class="section__aside">
                 <picture>

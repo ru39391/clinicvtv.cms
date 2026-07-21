@@ -13,9 +13,18 @@
 {set $contentRow}
   {if $title}<div class="section-title">{$title}</div>{/if}
   {if $content}
-    <div class="{if $img}content{else}content{$isContentColumned ? ' content_type_columned' : ''}{/if}">{$content}</div>
+  <div class="{if $img}content{else}content{$isContentColumned ? ' content_type_columned' : ''}{/if}">{$content}</div>
   {/if}
-  {if $isBtnVisible}<button class="btn btn-primary btn-md" type="button">Записаться на сайте</button>{/if}
+  {if $isBtnVisible}
+  <button
+    class="btn btn-primary btn-md js-modal-btn"
+    type="button"
+    data-target="form"
+    data-title="Записаться на сайте, кнопка в блоке формируемого контента"
+  >
+    Записаться на сайте
+  </button>
+  {/if}
 {/set}
 
 {set $sectionRow}
