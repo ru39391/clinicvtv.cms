@@ -17,7 +17,8 @@
         'limit' => 10,
         'sortby' => '{"createdAt":"DESC"}',
         'where' => [
-            'rating:>' => 3
+            'rating:>' => 3,
+            'is_hidden' => 0
         ],
         'tplWrapper' => '@FILE chunks/testimonials/wrapper.tpl',
         'tpl' => '@FILE chunks/testimonials/item.tpl',
