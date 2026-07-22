@@ -27,4 +27,6 @@
     {include 'file:chunks/blocks/examples.tpl'}
 
     {include 'file:chunks/blocks/price.tpl'}
+
+    <div class="js-gallery-wrapper"></div>
 {/block}

@@ -1,3 +1,6 @@
+{set $isSlide = $isPlainRow != 1}
+
+{if $isSlide}
 <div class="section section_type_row section_type_cols">
     <div class="section__aside">
         <div class="section-title section-title_mb_md">{55 | resource: 'introtext'}</div>
@@ -13,3 +16,7 @@
         </div>
     </div>
 </div>
+{else}
+<div class="articles-wrapper articles-wrapper_type_grid">{$output}</div>
+{/if}
+

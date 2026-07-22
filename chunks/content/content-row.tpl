@@ -13,7 +13,7 @@
 {set $contentRow}
   {if $title}<div class="section-title">{$title}</div>{/if}
   {if $content}
-  <div class="{if $img}content{else}content{$isContentColumned ? ' content_type_columned' : ''}{/if}">{$content}</div>
+  <div class="{if $img}content{else}content{$isContentColumned ? ' content_type_columned' : ''}{/if}{if $isBtnVisible} content_offset_mb{/if}">{$content}</div>
   {/if}
   {if $isBtnVisible}
   <button

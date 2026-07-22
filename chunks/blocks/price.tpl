@@ -4,9 +4,8 @@
     ///////////////////////////////////////////
 *}
 
-<div class="section">
-    <div class="section-title">Прейскурант</div>
-    <div class="tab-section js-price-tabs">
+{set $tabs}
+    <div class="tab-section tab-section_nav_nopt js-price-tabs">
         {$output ?: 'pdoResources' | snippet: [
             'parents' => 7,
             'limit' => 0,
@@ -18,4 +17,14 @@
         ]}
         <div class="tab-content js-tab-content"></div>
     </div>
-</div>
+{/set}
+
+
+{if $isUnwrapped}
+    {$tabs}
+{else}
+    <div class="section">
+        <div class="section-title">Прейскурант</div>
+        {$tabs}
+    </div>
+{/if}
