@@ -17,10 +17,10 @@
             <div class="js-team-grid">
                 {'pdoResources' | snippet: [
                     'parents' => 7,
+                    'resources' => '-17',
                     'limit' => 0,
                     'depth' => 0,
                     'sortby' => '{"menuindex":"ASC"}',
-                    'where' => '{"hidemenu:!=":1}',
                     'tplWrapper' => '@FILE chunks/team/category-wrapper.tpl',
                     'tpl' => '@FILE chunks/team/category-item.tpl'
                 ]}

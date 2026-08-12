@@ -79,25 +79,28 @@
                 </div>
             </header>
 
-            <div class="nav-wrapper js-nav">
+            <nav class="nav-wrapper js-nav">
                 {'pdoMenu' | snippet: [
                     'parents' => 0,
-                    'level' => 1,
-                    'limit' => 5,
+                    'resources' => '-54',
+                    'level' => 3,
+                    'limit' => 0,
                     'outerClass' => 'nav',
                     'rowClass' => 'nav__item',
                     'hereClass' => 'is-active',
                     'tplOuter' => '@FILE chunks/nav/wrapper.tpl',
-                    'tpl' => '@FILE chunks/nav/nav-item.tpl'
+                    'tpl' => '@FILE chunks/nav/nav-item.tpl',
+                    'tplInner' => '@FILE chunks/nav/dropdown-wrapper.tpl',
+                    'tplInnerRow' => '@FILE chunks/nav/dropdown-item.tpl',
                 ]}
                 <form class="search-form search-form_hidden">
                     {set $search}
                     <button class="search-form__btn" type="button">{include 'file:chunks/icons/search-icon.tpl'}</button>
-                    <input class="search-form__field" type="text">
+                    <input class="search-form__field" type="text" placeholder="Поиск" />
                     {/set}
                     {$search}
                 </form>
-            </div>
+            </nav>
 
             {'pdoCrumbs' | snippet: [
                 'showHome' => 1,

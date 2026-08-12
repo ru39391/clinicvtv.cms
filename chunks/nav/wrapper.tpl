@@ -1,1 +1,1 @@
-<nav {$classes}>{$wrapper}</nav>
+<ul {$classes}>{$wrapper}</ul>

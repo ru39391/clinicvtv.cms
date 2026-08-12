@@ -21,4 +21,4 @@
   </div>
 {/set}
 
-{if $isSlide}<div class="testimonials-slide swiper-slide w-auto">{$row}</div>{else}{$row}{/if}
+{if $isSlide}<div class="testimonials-slide swiper-slide w-auto h-auto">{$row}</div>{else}{$row}{/if}

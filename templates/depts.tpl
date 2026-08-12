@@ -34,6 +34,7 @@
                     'parents' => $_modx->resource.id,
                     'depth' => 0,
                     'limit' => 0,
+                    'sortby' => '{"menuindex":"ASC"}',
                     'tplWrapper' => '@FILE chunks/depts/subnav-wrapper.tpl',
                     'tpl' => '@FILE chunks/depts/subnav-item.tpl',
                 ]}
@@ -50,15 +51,16 @@
         {include 'file:chunks/blocks/features.tpl'}
 
         {set $team_dept = $_modx->getChunk('@FILE chunks/team/btn-toggler.tpl', $dept)}
-        {if $_modx->resource.hidemenu != 1}
+        {if $_modx->resource.id != 17}
             {$_modx->getChunk('@FILE chunks/blocks/team.tpl', [
                 'output' => $_modx->getChunk('@FILE chunks/content/tab-nav.tpl', ['output' => $team_dept])
             ])}
         {/if}
 
         {set $examples_dept = $_modx->getChunk('@FILE chunks/examples/btn-toggler.tpl', $dept)}
-        {if $_modx->resource.hidemenu != 1}
+        {if $_modx->resource.id != 17}
             {$_modx->getChunk('@FILE chunks/blocks/examples.tpl', [
+                'classMod' => 'section_margin_bottom',
                 'output' => $_modx->getChunk('@FILE chunks/content/tab-nav-row.tpl', ['output' => $examples_dept])
             ])}
         {/if}

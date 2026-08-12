@@ -11,7 +11,6 @@
             'limit' => 0,
             'depth' => 0,
             'sortby' => '{"menuindex":"ASC"}',
-            'where' => '{"hidemenu:!=":1}',
             'tplWrapper' => '@FILE chunks/content/tab-nav.tpl',
             'tpl' => '@FILE chunks/price/btn-toggler.tpl'
         ]}
