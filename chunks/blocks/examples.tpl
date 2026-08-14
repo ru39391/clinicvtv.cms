@@ -13,6 +13,7 @@
         'depth' => 0,
         'sortby' => '{"menuindex":"ASC"}',
         'tplWrapper' => '@FILE chunks/content/tab-nav-row.tpl',
-        'tpl' => '@FILE chunks/examples/btn-toggler.tpl'
+        'tpl' => '@FILE chunks/examples/btn-toggler.tpl',
+        'classMod' => ' btn-toggler_bg_white'
     ]}
 </div>

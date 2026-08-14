@@ -18,8 +18,8 @@
     {$static.css}
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
+    <div class="wrapper{if $_modx->resource.template | in : [6,3]} wrapper_type_bg{/if}">
+        <div class="wrapper__inner container">
             <header class="header">
                 {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
                     'wrapperClass' => 'header__logo',
