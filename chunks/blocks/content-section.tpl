@@ -20,6 +20,7 @@
         {$_modx->getChunk('@FILE chunks/content/content-row.tpl', [
             'first' => $key == 0,
             'last' => $key == $arrLenght - 1,
+            'single' => $key == 0 && $key == $arrLenght - 1,
             'inner' => $key != 0 && $key != $arrLenght - 1,
             'title' => $data.content_row_caption,
             'content' => $data.content_row_text,
