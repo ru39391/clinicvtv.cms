@@ -8,7 +8,7 @@
     {/set}
 
     <div class="section section_offset_md">
-        <section class="content">
+        <section class="content" itemprop="mainContentOfPage">
             {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
                 'isUnwrapped' => true,
                 'pls' => $price ~ $_modx->resource.content

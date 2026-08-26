@@ -27,7 +27,7 @@
         {set $title = ($_modx->resource.longtitle ?: $_modx->resource.menutitle) ?: $_modx->resource.pagetitle}
 
         <section class="section content content_offset_px">
-            <h1>{$title}</h1>
+            <h1 itemprop="name">{$title}</h1>
             <div class="card card_type_plain">
                 <div class="card__media"><img class="img-fluid" src="{$props.tv_img}" alt="{$title}" /></div>
                 {'pdoResources' | snippet: [

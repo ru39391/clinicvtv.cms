@@ -2,7 +2,7 @@
 
 {block 'main'}
     {set $content}
-        <section class="content">
+        <section class="content" itemprop="mainContentOfPage">
             {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
                 'isUnwrapped' => true,
                 'pls' => $_modx->resource.isfolder == 1 ? '' : $_modx->resource.tv_content_ext

@@ -1,1 +1,1 @@
-<nav class="pathway">{$output}</nav>
+<ul class="pathway" itemscope itemtype="http://schema.org/BreadcrumbList">{$output}</ul>

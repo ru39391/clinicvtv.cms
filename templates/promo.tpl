@@ -22,7 +22,7 @@
     {/set}
 
     {set $content}
-        <section class="content">
+        <section class="content" itemprop="mainContentOfPage">
             {$_modx->getChunk('@FILE chunks/blocks/content.tpl', [
                 'isUnwrapped' => true,
                 'pls' => $promo ~ $_modx->resource.content

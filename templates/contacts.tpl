@@ -4,12 +4,12 @@
     {set $props = $_modx->resource.properties[1].tvs}
     {set $title = ($_modx->resource.longtitle ?: $_modx->resource.menutitle) ?: $_modx->resource.pagetitle}
 
-    <section class="section content section_offset_md section_pb_none"><h1>{$title}</h1></section>
+    <section class="section content section_offset_md section_pb_none"><h1 itemprop="name">{$title}</h1></section>
 
     <div class="section section_pb_none section_type_row section_type_media section_ai_stretch section_dir_reverse">
         <div class="section__aside"><img class="section__img img-fluid" src="{$props.tv_img_ext}" alt="{$title}" /></div>
         <div class="section__wrapper section__wrapper_type_col section__wrapper_bg_white">
-            <div class="content content_offset_mb">{$_modx->resource.content}</div>
+            <div class="content content_offset_mb" itemprop="mainContentOfPage">{$_modx->resource.content}</div>
             <button class="btn btn-primary btn-md js-modal-btn" type="button" data-target="form" data-title="Стр. контактов">Записаться</button>
         </div>
     </div>

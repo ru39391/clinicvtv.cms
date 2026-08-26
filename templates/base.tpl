@@ -5,6 +5,10 @@
 <html lang="ru" itemscope itemtype="http://schema.org/WebPage">
 <head>
     <meta charset="utf-8">
+    <meta itemprop="inLanguage" content="ru">
+    <meta itemprop="url" content="{$_modx->resource.id | url : ['scheme' => 'full']}">
+    <meta itemprop="datePublished" content="{$_modx->resource.createdon | date : 'Y-m-d\TH:i:sP'}">
+    <meta itemprop="dateModified" content="{$_modx->resource.updatedon | date : 'Y-m-d\TH:i:sP'}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="{'site_url' | option}" />
 
@@ -14,13 +18,14 @@
     <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
     {/block}
 
+    {if $_modx->resource.id != 1}<link itemprop="isPartOf" href="{'site_url' | option}#website">{/if}
     <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     {$static.css}
 </head>
 <body>
     <div class="wrapper{if $_modx->resource.template | in : [6,3]} wrapper_type_bg{/if}">
         <div class="wrapper__inner container">
-            <header class="header">
+            <header class="header" itemprop="hasPart" itemscope itemtype="https://schema.org/WPHeader">
                 {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
                     'wrapperClass' => 'header__logo',
                     'isMainPage' => $is_main_page,
@@ -92,6 +97,7 @@
                     'tpl' => '@FILE chunks/nav/nav-item.tpl',
                     'tplInner' => '@FILE chunks/nav/dropdown-wrapper.tpl',
                     'tplInnerRow' => '@FILE chunks/nav/dropdown-item.tpl',
+                    'isMainNav' => 1
                 ]}
                 <form class="search-form search-form_hidden">
                     {set $search}
@@ -119,7 +125,7 @@
         </div>
     </div>
     <div class="footer-holder">
-        <footer class="footer container">
+        <footer class="footer container" itemprop="hasPart" itemscope itemtype="http://schema.org/WPFooter">
             {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
                 'wrapperClass' => 'footer__logo',
                 'isMainPage' => $is_main_page,
