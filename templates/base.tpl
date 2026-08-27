@@ -126,6 +126,9 @@
     </div>
     <div class="footer-holder">
         <footer class="footer container" itemprop="hasPart" itemscope itemtype="http://schema.org/WPFooter">
+            <meta itemprop="isFamilyFriendly" content="true">
+            <meta itemprop="inLanguage" content="ru">
+
             {$_modx->getChunk('@FILE chunks/blocks/logo.tpl', [
                 'wrapperClass' => 'footer__logo',
                 'isMainPage' => $is_main_page,
@@ -156,14 +159,31 @@
             </div>
 
             <div class="footer__contacts">
-                <div class="contacts contacts_offset_none">
+                <div class="contacts contacts_offset_none" itemscope itemtype="http://schema.org/Dentist">
+                    <meta itemprop="medicalSpecialty" content="Dentistry" />
+                    <meta itemprop="name" content="{$_modx->config.site_name}" />
+                    <meta itemprop="image" content="{'default_contacts_logo' | config}" />
+	                <meta itemprop="priceRange" content="Информация о ценах по телефону {'default_contacts_phone' | config}" />
+                    <meta itemprop="openingHours" content="{$_modx->config.default_contacts_hours | replace : ' |' : ', '}" />
+
+                    {set $phoneRow = '<span itemprop="telephone">' ~ $_modx->config.default_contacts_phone ~ '</span>'}
+                    {set $addressRow}
+                    <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <meta itemprop="postalCode" content="{'default_contacts_zip' | config}" />
+                        <meta itemprop="addressCountry" content="RU" />
+                        <meta itemprop="addressRegion" content="{'default_contacts_loc' | config}" />
+                        <meta itemprop="addressLocality" content="{'default_contacts_loc' | config}" />
+                        <span itemprop="streetAddress">{'default_contacts_address' | config}</span>
+                    </span>
+                    {/set}
+
                     {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
-                        'value' => $_modx->config.default_contacts_phone,
+                        'value' => $phoneRow,
                         'hasClassMod' => false,
                         'icon' => 'phone'
                     ])}
                     {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
-                        'value' => $_modx->config.default_contacts_subway ~ ', ' ~ $_modx->config.default_contacts_address,
+                        'value' => $_modx->config.default_contacts_subway ~ ', ' ~ $addressRow,
                         'hasClassMod' => false,
                         'classMod' => 'contacts__item_fs_sm'
                         'icon' => 'placemark',
@@ -174,11 +194,16 @@
                         'hasClassMod' => false,
                         'icon' => 'phone'
                     ])}
+
+                    <span class="contacts__item is-hidden" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+                        <meta itemprop="latitude" content="{'default_coords_lat' | config}" />
+                        <meta itemprop="longitude" content="{'default_coords_lon' | config}" />
+                    </span>
                 </div>
                 <div class="social social_hidden">{$social}</div>
                 <nav class="footer__nav footer__nav_type_copyright">
-                    <a class="footer__nav-item" href="{57 | url}">{57 | resource: 'pagetitle'}</a>
-                    <p class="footer__text">© {'' | date : 'Y'} Все права защищены</p>
+                    <a class="footer__nav-item" href="{57 | url}" content="{57 | url : ['scheme' => 'full']}" itemprop="license">{57 | resource: 'pagetitle'}</a>
+                    <p class="footer__text">© <span itemprop="copyrightYear">{'' | date : 'Y'}</span> Все права защищены</p>
                 </nav>
             </div>
         </footer>
