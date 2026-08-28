@@ -29,7 +29,7 @@
         <div class="section-desc section-desc_type_plain">{$faq_section_intro}</div>
     </div>
     <div class="section__wrapper">
-        <div class="faq-wrapper">{$faq_section}</div>
+        <div class="faq-wrapper" itemscope itemtype="https://schema.org/FAQPage">{$faq_section}</div>
     </div>
 </div>
 {/if}

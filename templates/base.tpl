@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="ru" itemscope itemtype="http://schema.org/WebPage">
 <head>
-    <meta charset="utf-8">
-    <meta itemprop="inLanguage" content="ru">
-    <meta itemprop="url" content="{$_modx->resource.id | url : ['scheme' => 'full']}">
-    <meta itemprop="datePublished" content="{$_modx->resource.createdon | date : 'Y-m-d\TH:i:sP'}">
-    <meta itemprop="dateModified" content="{$_modx->resource.updatedon | date : 'Y-m-d\TH:i:sP'}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta itemprop="inLanguage" content="ru" />
+    <meta itemprop="url" content="{$_modx->resource.id | url : ['scheme' => 'full']}" />
+    <meta itemprop="datePublished" content="{$_modx->resource.createdon | date : 'Y-m-d\TH:i:sP'}" />
+    <meta itemprop="dateModified" content="{$_modx->resource.updatedon | date : 'Y-m-d\TH:i:sP'}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="{'site_url' | option}" />
 
     {block 'meta'}
@@ -18,7 +18,6 @@
     <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
     {/block}
 
-    {if $_modx->resource.id != 1}<link itemprop="isPartOf" href="{'site_url' | option}#website">{/if}
     <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     {$static.css}
 </head>
@@ -164,6 +163,7 @@
                     <meta itemprop="name" content="{$_modx->config.site_name}" />
                     <meta itemprop="image" content="{'default_contacts_logo' | config}" />
 	                <meta itemprop="priceRange" content="Информация о ценах по телефону {'default_contacts_phone' | config}" />
+                    <meta itemprop="paymentAccepted" content="Наличные, Банковские карты" />
                     <meta itemprop="openingHours" content="{$_modx->config.default_contacts_hours | replace : ' |' : ', '}" />
 
                     {set $phoneRow = '<span itemprop="telephone">' ~ $_modx->config.default_contacts_phone ~ '</span>'}
@@ -174,6 +174,13 @@
                         <meta itemprop="addressRegion" content="{'default_contacts_loc' | config}" />
                         <meta itemprop="addressLocality" content="{'default_contacts_loc' | config}" />
                         <span itemprop="streetAddress">{'default_contacts_address' | config}</span>
+                    </span>
+                    {/set}
+                    {set $mobilePhoneRow}
+                    <span itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+                        <meta itemprop="contactType" content="Запись на приём" />
+                        <meta itemprop="availableLanguage" content="Russian" />
+                        <span itemprop="telephone">{'default_contacts_mobile' | config}</span>
                     </span>
                     {/set}
 
@@ -190,7 +197,7 @@
                         'isRow' => true
                     ])}
                     {$_modx->getChunk('@FILE chunks/content/contacts-row.tpl', [
-                        'value' => $_modx->config.default_contacts_mobile,
+                        'value' => $mobilePhoneRow,
                         'hasClassMod' => false,
                         'icon' => 'phone'
                     ])}

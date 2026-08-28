@@ -15,4 +15,15 @@
             ])}
         </section>
     </div>
+
+    {'pdoResources' | snippet: [
+        'class' => 'pricelistItem',
+        'loadModels' => 'pricelist',
+        'limit' => 0,
+        'outputSeparator' => ',',
+        'sortby' => '{"id":"ASC"}',
+        'where' => '{"is_hidden":0}',
+        'tplWrapper' => '@FILE chunks/price/microdata-wrapper.tpl',
+        'tpl' => '@FILE chunks/price/microdata-item.tpl'
+    ]}
 {/block}
