@@ -18,10 +18,11 @@
     <meta name="description" content="{$_modx->resource.tv_desc}" itemprop="description" />
     {/block}
 
+    {if $_modx->resource.id != 1}<link itemprop="isPartOf" href="{'site_url' | option}#website">{/if}
     <link href="{'default_tpl_assets' | config}icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     {$static.css}
 </head>
-<body>
+<body{if $_modx->resource.id == 1} id="website"{/if}>
     <div class="wrapper{if $_modx->resource.template | in : [6,3]} wrapper_type_bg{/if}">
         <div class="wrapper__inner container">
             <header class="header" itemprop="hasPart" itemscope itemtype="https://schema.org/WPHeader">
@@ -158,9 +159,9 @@
             </div>
 
             <div class="footer__contacts">
-                <div class="contacts contacts_offset_none" itemscope itemtype="http://schema.org/Dentist">
+                <div id="clinic" class="contacts contacts_offset_none" itemscope itemtype="http://schema.org/Dentist">
                     <meta itemprop="medicalSpecialty" content="Dentistry" />
-                    <meta itemprop="name" content="{$_modx->config.site_name}" />
+                    <meta itemprop="name" content="{'site_name' | config}" />
                     <meta itemprop="image" content="{'default_contacts_logo' | config}" />
 	                <meta itemprop="priceRange" content="Информация о ценах по телефону {'default_contacts_phone' | config}" />
                     <meta itemprop="paymentAccepted" content="Наличные, Банковские карты" />

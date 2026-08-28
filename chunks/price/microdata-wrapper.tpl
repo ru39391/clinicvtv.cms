@@ -6,10 +6,10 @@
   "@graph": [
     {
       "@type": "Dentist",
+      "@id": "{$itemid}",
       "name": "{$_modx->config.site_name}",      
       "priceRange": "Информация о ценах по телефону {$_modx->config.default_contacts_phone}",
-      "image": "{$_modx->config.default_contacts_logo}",
-      "@id": "{$itemid}"
+      "image": "{$_modx->config.default_contacts_logo}"
     },
     {
       "@type": "WebPage",

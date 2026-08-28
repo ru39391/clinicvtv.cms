@@ -37,17 +37,22 @@
             </div>
         </div>
     {else}
+        {set $specs = []}
+        {set $url = $_modx->resource.id | url : ['scheme' => 'full']}
         {set $props = $_modx->resource.properties[1].tvs}
         {set $depts = 'handleCategoryData' | snippet: ['input' => $props.tv_dept, 'arr' => 1, 'delimiter' => ',']}
         {set $team_category}
             {set $depts_counter = 0}
             {foreach $depts as $depts_id}
                 {set $depts_counter+=1}
-                {set $props = $depts_id | resource : 'properties'}
+                {set $properties = $depts_id | resource : 'properties'}
+                {set $caption = 'handleCategoryData' | snippet: ['input' => $properties[1].tvs.tv_team_category, 'index' => 1]}
+                {set $specs[$depts_id] = $caption}
 
                 {$_modx->getChunk('@FILE chunks/team/category-item.tpl', [
                     'id' => $depts_id,
-                    'caption' => 'handleCategoryData' | snippet: ['input' => $props[1].tvs.tv_team_category, 'index' => 1]
+                    'caption' => $caption,
+                    'classMod' => 'btn-toggler_bg_white'
                 ])}
             {/foreach}
         {/set}
@@ -55,7 +60,7 @@
         <div class="section section_offset_md section_pb_none">{$content}</div>
 
         {set $pic = 'pthumb' | snippet: ['input' => $props.tv_img ?: $_modx->config.default_team_nophoto, 'options' => 'q=100&h=600']}
-        <div class="section section_type_row section_ai_stretch section_dir_reverse">
+        <div id="{$_modx->resource.alias}" class="section section_type_row section_ai_stretch section_dir_reverse">
             <div class="section__wrapper section__wrapper_type_col section__wrapper_bg_white">
                 {if $depts_counter > 0}{$_modx->getChunk('@FILE chunks/team/category-wrapper.tpl', ['output' => $team_category])}{/if}
 
@@ -119,5 +124,44 @@
         {/if}
 
         {include 'file:chunks/blocks/callback-divider.tpl'}
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "IndividualPhysician",
+                "@id": "{$url}#{$_modx->resource.alias}",
+                "name": "{$_modx->resource.pagetitle}",
+                "url": "{$url}",
+                "image": "{'site_url' | config}{$props.tv_img ?: $_modx->config.default_team_nophoto}",
+                "telephone": "{'default_contacts_phone' | config}",
+                {if $depts_counter > 0}
+                "medicalSpecialty": [
+                    {foreach $specs as $value}
+                    {
+                    "@type": "MedicalSpecialty",
+                    "name": "{$value}"
+                    }{if $value@last != true},{/if}
+                    {/foreach}
+                ],
+                {/if}
+                "description": "{if $_modx->resource.introtext}опыт работы с {$_modx->resource.introtext} года{/if}",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "{$url}#{$_modx->resource.alias}"
+                },
+                "potentialAction": {
+                    "@type": "ReserveAction",
+                    "name": "Записаться",
+                    "target": "{$url}"
+                },
+                "practicesAt": {
+                    "@type": "Dentist",
+                    "@id": "{'site_url' | config}#clinic",
+                    "name": "{$_modx->config.site_name}",      
+                    "priceRange": "Информация о ценах по телефону {'default_contacts_phone' | config}",
+                    "image": "{$_modx->config.default_contacts_logo}"
+                }
+            }
+        </script>
     {/if}
 {/block}
