@@ -1,7 +1,7 @@
 {
     "@type": "Service",
     "name": "{$name}",
-    "description": "",
+    "description": "{if $isMinValue == 1}Цена от {$price} руб.{/if}",
     "provider": {
         "@id": "{$_modx->config.site_url}#clinic"
     },
