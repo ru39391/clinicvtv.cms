@@ -1,0 +1,1 @@
+<div class="tab-nav js-tab-nav">{$output}</div>

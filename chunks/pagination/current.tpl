@@ -1,0 +1,1 @@
+<span class="pagination__item pagination__item_type_current">{$pageNo}</span>
